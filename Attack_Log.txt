@@ -1,0 +1,43 @@
+
+==================== EMAIL GATEWAY LOG ====================
+
+May 15 08:30:55 mailgw postfix/smtpd[2211]: connect from unknown[192.168.10.45]
+May 15 08:30:56 mailgw postfix/smtpd[2211]: 9F2AC10234: client=unknown[192.168.10.45]
+May 15 08:30:57 mailgw postfix/cleanup[2215]: 9F2AC10234: message-id=<fake123@company-secure-alert.com>
+May 15 08:30:58 mailgw postfix/qmgr[1987]: 9F2AC10234: from=<it-support@company-secure-alert.com>, size=1850, nrcpt=1 (queue active)
+May 15 08:30:59 mailgw postfix/local[2217]: 9F2AC10234: to=<employee1@company.com>, subject="URGENT: Password Expiration Notice", status=sent
+
+==================== WEB PROXY LOG ====================
+
+May 15 08:52:11 proxy01 GET http://company-secure-login.co/verify SRC_IP=192.168.10.23 USER=employee1 STATUS=200
+May 15 08:52:33 proxy01 POST http://company-secure-login.co/auth SRC_IP=192.168.10.23 USER=employee1 STATUS=302
+
+==================== AUTHENTICATION LOG (/var/log/auth.log) ====================
+
+May 15 08:55:12 app01 sshd[3145]: Failed password for admin from 185.243.115.84 port 53421 ssh2
+May 15 08:55:14 app01 sshd[3145]: Failed password for admin from 185.243.115.84 port 53421 ssh2
+May 15 08:55:16 app01 sshd[3145]: Failed password for admin from 185.243.115.84 port 53421 ssh2
+May 15 08:55:18 app01 sshd[3145]: Failed password for admin from 185.243.115.84 port 53421 ssh2
+May 15 08:55:20 app01 sshd[3145]: Failed password for admin from 185.243.115.84 port 53421 ssh2
+
+May 15 08:56:01 app01 sshd[3152]: Failed password for invalid user guest from 103.56.78.12 port 44211 ssh2
+May 15 08:56:04 app01 sshd[3152]: Failed password for invalid user guest from 103.56.78.12 port 44211 ssh2
+
+May 15 09:01:11 app01 sshd[3199]: Accepted password for admin from 45.77.199.211 port 60123 ssh2
+May 15 09:01:11 app01 sshd[3199]: pam_unix(sshd:session): session opened for user admin
+
+==================== PRIVILEGE ESCALATION LOG ====================
+
+May 15 09:03:02 app01 sudo: admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/bin/bash
+May 15 09:03:02 app01 sudo: pam_unix(sudo:session): session opened for user root by admin(uid=0)
+
+==================== USER INCIDENT REPORT ====================
+
+May 15 09:05:44 HELP DESK TICKET ID: INC-2026-0515-778
+
+User: employee1@company.com
+
+Statement:
+"I received an email saying my password was expiring. I clicked the link and entered my username and password into the site. I am not sure if it was legitimate."
+
+Status: Escalated to SOC
